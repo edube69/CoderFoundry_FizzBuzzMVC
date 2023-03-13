@@ -1,12 +1,46 @@
-﻿@{
+﻿@model CoderFoundry_FizzBuzzMVC.Models.FizzBuzz;
+
+@{
     ViewData["Title"] = "FizzBuzz";
 }
 
-<div class="row">
-    <div class="col">
-        <h1 class="display-4">FizzBuzz</h1>
+<div class="row p-4">
+    <div class="col border-2 border-end">
+        <h1 class="display-4">FizzBuzz MVC: <br />A Coding Project</h1>
+        <h4 class="lead">When it counts, you Fizz Buzz.  A Javascript coding exercise using Loops.</h4>
+        <br />
+        <p> This application will consider the two numbers entered and for each number between 1 and 100,
+            it will print FIZZ for the numbers that are divisible by the first number,  BUZZ will be printed
+            for the numbers divisible by the second number and FIZZBUZZ will be printed for the numbers divisible by both. 
+            Finaly, simply print the number if it is not divisible by either.
+        </p>
+        <h2 class="mt-5 border-bottom border-2">Instruction</h2>
+        <p>Enter 2 numbers.  The first number will be used to evaluate Fizz. The second number will be used to evaluate Buzz 
+            and FizzBuzz will be determined based on the combination of the two numbers.</p>
     </div>
-    <div class="col">
 
+    <div class="col p-4">
+        <h5>Enter FIZZ and BUZZ Values</h5>
+        <form asp-controller="Home" asp-action="FBPage" method="post" class="row gy-2 gx-3">
+            <div class="form-group">
+                <label asp-for="FizzValue">Fizz Value</label>
+                <input asp-for="FizzValue" type="number" class="form-control" placeholder="Enter Fizz Value" value="@Model.FizzValue">
+            </div>
+            <div class="form-group">
+                <label asp-for="BuzzValue">Buzz Value</label>
+                <input asp-for="BuzzValue" type="Number" class="form-control" placeholder="Buzz Value" value="@Model.BuzzValue">
+            </div>
+            <div class="col-12 d-flex justify-content-end">
+                <button type="button" class="btn btn-dark ">Display the FizzBuzz</button>
+            </div>
+        </form>
+        <h2 class="mt-5 border-bottom border-2">Results</h2>
+        <div class="table-responsive">
+            <table class="table table-striped table-sm" table>
+                <tbody id="results">
+                    <!-- Results go here-->
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>

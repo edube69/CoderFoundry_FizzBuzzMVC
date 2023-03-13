@@ -19,7 +19,11 @@ namespace CoderFoundry_FizzBuzzMVC.Controllers
         }
         public IActionResult FBPage()
         {
-            return View();
+            FizzBuzz model = new ();
+            model.FizzValue = 3;
+            model.BuzzValue = 6;
+
+            return View(model);
         }
         public IActionResult Privacy()
         {
