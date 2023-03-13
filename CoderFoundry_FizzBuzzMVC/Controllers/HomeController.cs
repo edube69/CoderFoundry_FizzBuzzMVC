@@ -17,7 +17,10 @@ namespace CoderFoundry_FizzBuzzMVC.Controllers
         {
             return View();
         }
-
+        public IActionResult FBPage()
+        {
+            return View();
+        }
         public IActionResult Privacy()
         {
             return View();
