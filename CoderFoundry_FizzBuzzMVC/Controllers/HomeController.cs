@@ -20,7 +20,7 @@ namespace CoderFoundry_FizzBuzzMVC.Controllers
         [HttpGet]
         public IActionResult FBPage()
         {
-            FizzBuzz model = new ();
+            FizzBuzz model = new();
             model.FizzValue = 3;
             model.BuzzValue = 5;
 
@@ -30,25 +30,34 @@ namespace CoderFoundry_FizzBuzzMVC.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult FBPage(FizzBuzz fizzBuzz)
         {
-            for(int i = 0; i <= 100; i++)
+            List<string> fbItems = new();
+            bool fizz;
+            bool buzz;
+
+            for (int i = 1; i <= 100; i++)
             {
-                if (i % fizzBuzz.FizzValue == 0 && i % fizzBuzz.BuzzValue == 0)
+                fizz = (i % fizzBuzz.FizzValue == 0);
+                buzz = (i % fizzBuzz.BuzzValue == 0);
+
+                if (fizz && buzz)
                 {
-                    fizzBuzz.Result.Add("FizzBuzz");
+                    fbItems.Add("FizzBuzz");
                 }
-                else if (i % fizzBuzz.FizzValue == 0)
+                else if (fizz && !buzz)
                 {
-                    fizzBuzz.Result.Add("Fizz");
+                    fbItems.Add("Fizz");
                 }
-                else if (i % fizzBuzz.BuzzValue == 0)
+                else if (!fizz && buzz)
                 {
-                    fizzBuzz.Result.Add("Buzz");
+                    fbItems.Add("Buzz");
                 }
                 else
                 {
-                    fizzBuzz.Result.Add(i.ToString());
+                    fbItems.Add(i.ToString());
                 }
             }
+
+            fizzBuzz.Result = fbItems;
             return View(fizzBuzz);
         }
 
