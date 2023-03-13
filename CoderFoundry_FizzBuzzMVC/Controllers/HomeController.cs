@@ -17,14 +17,41 @@ namespace CoderFoundry_FizzBuzzMVC.Controllers
         {
             return View();
         }
+        [HttpGet]
         public IActionResult FBPage()
         {
             FizzBuzz model = new ();
             model.FizzValue = 3;
-            model.BuzzValue = 6;
+            model.BuzzValue = 5;
 
             return View(model);
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult FBPage(FizzBuzz fizzBuzz)
+        {
+            for(int i = 0; i <= 100; i++)
+            {
+                if (i % fizzBuzz.FizzValue == 0 && i % fizzBuzz.BuzzValue == 0)
+                {
+                    fizzBuzz.Result.Add("FizzBuzz");
+                }
+                else if (i % fizzBuzz.FizzValue == 0)
+                {
+                    fizzBuzz.Result.Add("Fizz");
+                }
+                else if (i % fizzBuzz.BuzzValue == 0)
+                {
+                    fizzBuzz.Result.Add("Buzz");
+                }
+                else
+                {
+                    fizzBuzz.Result.Add(i.ToString());
+                }
+            }
+            return View(fizzBuzz);
+        }
+
         public IActionResult Privacy()
         {
             return View();
